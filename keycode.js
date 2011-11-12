@@ -64,7 +64,7 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-var modifiers = ['ctrl', 'alt', 'shift'],
+var modifiers = ['ctrl', 'alt', 'shift', 'meta'],
     KEY_MAP = {},
     shifted_symbols = {
         58: 59,     // : -> ;
@@ -195,12 +195,14 @@ function update_current_modifiers(key) {
     current_keys.ctrl = key.ctrl;
     current_keys.alt = key.alt;
     current_keys.shift = key.shift;
+    current_keys.meta = key.meta;
 };
 
 function same_modifiers(key1, key2) {
     return key1.ctrl === key2.ctrl
         && key1.alt === key2.alt
-        && key1.shift === key2.shift;
+        && key1.shift === key2.shift 
+        && key1.meta  === key2.meta;
 };
 
 if(typeof window.KeyCode != "undefined") {
@@ -265,7 +267,8 @@ var KeyCode = window.KeyCode = {
             code: KeyCode.translate_key_code(code),
             shift: e.shiftKey,
             alt: e.altKey,
-            ctrl: e.ctrlKey
+            ctrl: e.ctrlKey,
+            meta: e.metaKey
         };
     },
 
